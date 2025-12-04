@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        heading: ["Oswald", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -91,65 +95,10 @@ export default {
         "zoom": "zoom 0.3s ease-out",
         "text-reveal": "text-reveal 1s ease-out",
         "bounce-slow": "bounce-slow 2s ease-in-out infinite",
+        "spin-slow": "spin 20s linear infinite",
+        "gradient-x": "gradient-x 3s ease infinite",
       },
-      keyframes: {
-        "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
-        },
-        "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
-        },
-        "fade-in": {
-          from: { opacity: "0", transform: "translateY(20px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
-        "slide-up": {
-          from: { opacity: "0", transform: "translateY(30px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
-        "slide-right": {
-          from: { opacity: "0", transform: "translateX(-30px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
-        },
-        "slide-left": {
-          from: { opacity: "0", transform: "translateX(30px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
-        },
-        glow: {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--gold) / 0.3)" },
-          "50%": { boxShadow: "0 0 30px hsl(var(--gold) / 0.6)" },
-        },
-        zoom: {
-          from: { transform: "scale(1)" },
-          to: { transform: "scale(1.05)" },
-        },
-        "text-reveal": {
-          from: { 
-            opacity: "0", 
-            transform: "translateY(20px)",
-            filter: "blur(10px)",
-          },
-          to: { 
-            opacity: "1", 
-            transform: "translateY(0)",
-            filter: "blur(0)",
-          },
-        },
-        "bounce-slow": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-      },
+
     },
   },
   plugins: [require("tailwindcss-animate")],

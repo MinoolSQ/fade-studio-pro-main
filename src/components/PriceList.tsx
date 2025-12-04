@@ -27,7 +27,7 @@ const services = [
   },
   {
     icon: Baby,
-    name: "Kids Cut",
+    name: "Dečije Šišanje",
     price: "1.000 RSD",
     duration: "25 min",
   },
@@ -35,10 +35,10 @@ const services = [
 
 const PriceList = () => {
   return (
-    <section className="py-24 px-4 bg-background">
+    <section id="pricing" className="py-24 px-4 bg-background">
       <div className="container mx-auto">
         <div className="text-center mb-16 space-y-4">
-          <div className="inline-block px-4 py-2 bg-gold/10 border border-gold/20 rounded-full animate-fade-in">
+          <div className="inline-block px-4 py-2 bg-gold/10 border border-gold/20 rounded-full animate-bounce-slow btn-shimmer">
             <span className="text-gold text-sm font-semibold">CENOVNIK</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground animate-text-reveal" style={{ animationDelay: "0.2s", animationFillMode: "both" }}>
@@ -48,18 +48,18 @@ const PriceList = () => {
             Transparentne cene. Profesionalna usluga. Bez kompromisa.
           </p>
         </div>
-        
+
         <div className="max-w-3xl mx-auto space-y-4">
           {services.map((service, index) => (
-            <div 
+            <div
               key={service.name}
               className="group bg-card border border-border hover:border-gold/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-lg hover:shadow-gold/10 animate-slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="bg-gold/10 p-3 rounded-xl group-hover:bg-gold/20 transition-colors">
-                    <service.icon className="h-6 w-6 text-gold" />
+                  <div className="bg-gold/10 p-3 rounded-xl group-hover:bg-gold/20 transition-all duration-500">
+                    <service.icon className="h-6 w-6 text-gold transition-transform duration-500 group-hover:rotate-[360deg]" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-foreground">{service.name}</h3>

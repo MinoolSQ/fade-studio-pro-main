@@ -53,5 +53,53 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    /* Fix for layout shift when scrollbar disappears on modal open */
+    padding-right: 0 !important;
+    overflow-y: scroll !important;
+    /* Always show scrollbar to prevent shift */
   }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-[#D4AF37] via-[#F2C94C] to-[#D4AF37] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-x;
+  }
+
+  /* Shimmer wave animation for CTA buttons */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 230, 100, 0.3) 20%,
+        rgba(255, 255, 150, 0.6) 50%,
+        rgba(255, 230, 100, 0.3) 80%,
+        transparent 100%);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(200%);
+    }
+  }
+}
+
+/* Prevent Radix UI from adding padding-right to body when opening dropdown/dialog */
+[data-radix-scroll-lock] {
+  padding-right: 0 !important;
 }
