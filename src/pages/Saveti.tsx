@@ -184,14 +184,35 @@ const Saveti = () => {
     const [activeCategory, setActiveCategory] = useState<string | null>(null);
     const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
     const [currentTutorialStep, setCurrentTutorialStep] = useState(0);
+    const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const filteredTips = activeCategory
         ? tips.filter((tip) => tip.tag === activeCategory)
         : tips;
 
-    // Intersection Observer for staggered card reveal
+    // Check if mobile or tablet
     useEffect(() => {
+        const checkDevice = () => {
+            setIsMobileOrTablet(window.innerWidth < 1024);
+        };
+        checkDevice();
+        window.addEventListener('resize', checkDevice);
+        return () => window.removeEventListener('resize', checkDevice);
+    }, []);
+
+    // On mobile/tablet, show all cards immediately
+    useEffect(() => {
+        if (isMobileOrTablet) {
+            const allIndexes = new Set(filteredTips.map((_, i) => i));
+            setVisibleCards(allIndexes);
+        }
+    }, [isMobileOrTablet, filteredTips]);
+
+    // Intersection Observer for staggered card reveal (desktop only)
+    useEffect(() => {
+        if (isMobileOrTablet) return; // Skip animation on mobile/tablet
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -213,7 +234,7 @@ const Saveti = () => {
         });
 
         return () => observer.disconnect();
-    }, [filteredTips]);
+    }, [filteredTips, isMobileOrTablet]);
 
     // Auto-advance tutorial carousel
     useEffect(() => {
