@@ -44,9 +44,7 @@ All colors MUST be HSL.
     --dark-card: 220 15% 12%;
     --dark-muted: 220 10% 20%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }

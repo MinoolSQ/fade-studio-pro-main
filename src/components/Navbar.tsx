@@ -35,7 +35,7 @@ const Navbar = () => {
     { name: "O nama", href: "#about" },
     { name: "Tim", href: "#team" },
     { name: "Recenzije", href: "#reviews" },
-    { name: "Galerija", href: "#gallery" },
+    { name: "Galerija", href: "/galerija" },
     { name: "Saveti", href: "/saveti" },
   ];
 
@@ -178,7 +178,13 @@ const Navbar = () => {
                       key={link.name}
                       href={link.href}
                       className="block text-foreground/80 hover:text-gold transition-all font-medium"
-                      onClick={(e) => handleLinkClick(e, link.href)}
+                      onClick={(e) => {
+                        if (link.href.startsWith("/")) {
+                          setIsOpen(false);
+                        } else {
+                          handleLinkClick(e, link.href);
+                        }
+                      }}
                     >
                       {link.name}
                     </a>
